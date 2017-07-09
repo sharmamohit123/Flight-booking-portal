@@ -8,16 +8,15 @@ include_once $path.'/common/header.php';?>
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
  
-	if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username'])){
-	 	//$path = $_SERVER['DOCUMENT_ROOT'];
+	//if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username'])){
 	 	include_once $path.'/common/base.php'; 
 	 	include_once $path.'/inc/class.users.inc.php'; 
 	 	$flights = new populate($db);
         $list = $flights->showFlights();
-        }
-    else{
-        echo "Sorry! You are not logged in.";
-    }
+   //     }
+    //else{
+      //  echo "Sorry! You are not logged in.";
+    //}
  }
 ?>
  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -52,7 +51,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		</table>
 
 	</div>
-	
+	<br>
 	<ul class="bg-bubbles">
 		<li></li>
 		<li></li>
@@ -68,34 +67,48 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 </div>
 
 <div class="down">
-	<table width="100%">
+	<table width="70%" style="background-color:#00004d;margin-left:300px;color:white">
 		<tr>
-			<td>Flight</td>
-			<td>Timing</td>
-			<td>Duration</td>
-			<td>Book Flight</td>
+			<td align="center">Flight</td>
+			<td width="30%">Timing</td>
+			<td width="15%">Duration</td>
+			<td width="25%">Book Flight</td>
 		</tr>
-		</table>
+		</table><br>
 		<?php
 
 		foreach($list as $row){?>
-			<table width="70%" style="background-color:white;margin-left:300px">
+			<table width="70%" style="background-color:#ffcc99;margin-left:300px;border-radius:8px;color:#00004d">
 				<tr>
 					<td><img src="/images/<?php echo $row['brand'].".png"; ?>" width="30px" height="30px"></td>
 					<td><?php echo $row['brand']; ?><br><?php echo $row['name']; ?></td>
-					<td><?php echo $row['timing']; ?></td>
-					<td><?php echo $row['duration']; ?></td>
-				<td><form method="POST" action="/review_booking.php">
+					<td width="30%"><?php echo $row['timing']; ?></td>
+					<td width="15%"><?php echo $row['duration']; ?></td>
+				<td width="25%" height="70px">
+					<?php
+						if(empty($_SESSION['LoggedIn']) && empty($_SESSION['Username'])){
+							//$set = TRUE; 
+							?>
+							<button type="button" class="login-button1" onclick="myFunction()">Book</button>
+						<?php }
+					else{ ?>
+					<form method="POST" action="/review_booking.php">
 					<input type="hidden" name="flight" value="<?php echo $row['flightId']; ?>">
 					<input type="hidden" name="user" value="<?php echo $_SESSION['Username']; ?>">
 					<input type="hidden" name="amount" value="<?php echo $_POST['passenger']; ?>">
-					<button type="submit" id="login-button" method="POST">Book Flight</button>
+					<button type="submit" class="login-button1" method="POST">Book</button>
 					</form>
-					</td>
+					<?php } ?>
+					</td> 
 				</tr>
-			</table><br><br>
+			</table><br>
 		<?php
 		}
 		?>
 		</table>
 </div>
+<script>
+function myFunction() {
+	document.getElementById('change').innerHTML="<meta http-equiv='refresh' content='3; url=/login.php'>"; 
+}
+</script>

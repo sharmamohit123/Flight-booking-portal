@@ -135,6 +135,12 @@ class populate{
             //echo "Hello";
             echo $row['source'].$row['destination'];
         }*/
+       /* echo $data[0]['name'];
+        $name = "INDIGO";
+        $filter = $conn->prepare("SELECT * FROM $data WHERE name=:name");
+        $filter->bindParam(':name',$name,PDO::PARAM_STR);
+        $filter->execute();
+        $new = $filter->fetchAll();*/
         return $data;
 
     }

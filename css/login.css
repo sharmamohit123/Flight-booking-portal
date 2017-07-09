@@ -83,6 +83,7 @@
 .down{
   background-color:#00004d;
   color: red;
+  min-height: 600px;
 }
 
 form {
@@ -167,6 +168,27 @@ form button {
 form button:hover {
   background-color: #f5f7f9;
 }
+
+.login-button1 {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  background-color: #00004d;
+  border: 0;
+  padding: 10px 15px;
+  color: #53e3a6;
+  border-radius: 10px;
+  width: 150px;
+  cursor: pointer;
+  font-size: 18px;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+}
+.login-button1:hover {
+  background-color: #f5f7f9;
+}
+
 .bg-bubbles {
   position: absolute;
   top: 0;

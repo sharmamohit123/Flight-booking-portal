@@ -1,22 +1,4 @@
-<?php
- if($_SERVER['REQUEST_METHOD']=='POST'){
 
- 
-	if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username'])){
-	 	$path = $_SERVER['DOCUMENT_ROOT'];
-	 	include_once $path.'/common/base.php'; 
-	 	include_once $path.'/inc/class.users.inc.php'; 
-	 	$flights = new populate($db);
-        $list = $flights->showFlights();
-        foreach ($list as $row){
-            echo $row['name']." ";
-        }
-        }
-    else{
-        echo "No flights found.";
-    }
- }
-?>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
@@ -36,9 +18,10 @@
 <div class="wrapper">
 	<div class="container">
 		<h1>Book Flight</h1>
-        <table>
+        <table width="100%">
             <tr>
-                <td>
+                <td width="60%" align="center">
+                    <img src="./images/book.png" width="250px" height="250px">
                 </td>
                 <td>                    
 		<form class="form" method="POST" action="/show_flights.php">

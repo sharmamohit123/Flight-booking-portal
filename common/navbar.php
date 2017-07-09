@@ -18,20 +18,22 @@
             <ul>
             <?php
             if(isset($_SESSION['LoggedIn']) && isset($_SESSION['Username']) && $_SESSION['LoggedIn']==1){
-                ?>
-                <li><a href="./main.php">HOME</a></li>
+                ?> 
+                <li><a href="./main.php"><img src="./images/home.png" width="20px" height="17px"></a></li>
                 <li><a href=".sec02">CONTACT US</a></li>
                 <li><a href="./logout.php">LOGOUT</a></li>
                 <li><a href="./new_booking.php">NEW_BOOKING</a></li>
+                <li><a href="./my_bookings.php">MY_BOOKINGS</a></li>
             <?php
             }
                 else{
                     ?>
 
-                <li><a href="./main.php">HOME</a></li>
+                <li><a href="./main.php"><img src="./images/home.png" width="20px" height="20px"></a></li>
                 <li><a href=".sec02">CONTACT US</a></li>
                 <li><a href="./login.php">LOGIN</a></li>
                 <li><a href="./signup.php">SIGNUP</a></li>
+                <li><a href="./new_booking.php">NEW_BOOKING</a></li>
                 <?php
                     }
                 ?>

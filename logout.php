@@ -8,3 +8,6 @@
 ?>
  
 <meta http-equiv="refresh" content="0;main.php">
+<script>
+    alert('You are successfully logged out');
+</script>

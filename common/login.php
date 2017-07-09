@@ -3,7 +3,7 @@
  if($_SERVER['REQUEST_METHOD']=='POST'){
 
  	if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username'])){
-		echo "<p> You are already loged in.</p>";
+		echo "<script> alert('You are already loged in.'); </script>";
 	 }
  
 	elseif(!empty($_POST['uname']) && !empty($_POST['pass'])){
@@ -13,11 +13,17 @@
 	 	$users = new bookingUsers($db);
 	 	if($users->accountLogin()==TRUE){
 			//echo "<h1> You have Successfully Logged In.</h1>";
+			//if($set){
+				//$set = FAlSE;
 			echo "<meta http-equiv='refresh' content='3; url=/new_booking.php'>";
+			//}
+			//else{
+			//echo "<meta http-equiv='refresh' content='3; url=/new_booking.php'>";				
+			//}
 		 }
 	 	else{
 
-			echo "<h1>Login Failed</h1>";
+			echo "<script> alert('Login failed'); </script>";
 		 }
 		 // unset($_POST['email']);
 	}
