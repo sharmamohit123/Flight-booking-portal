@@ -34,8 +34,8 @@
 		<h1>LOGIN</h1>
 		
 		<form class="form" method="POST" acton="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-			<input type="text" placeholder="Username" required name="uname" id="icon">
-			<input type="password" placeholder="Password" required name="pass">
+			<input type="text" placeholder="Username" required name="uname" class="icon1">
+			<input type="password" placeholder="Password" required name="pass" class="icon2">
 			<button type="submit" id="login-button" method="POST">Login</button><br /><br /><br /><br />
 			<b>New to MyFlight?</b><br /><br />
 			<button type="button" id="login-button" onclick="myFunction()">Create Your Account</button>

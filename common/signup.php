@@ -86,13 +86,13 @@ function test_input($data) {
         All fields required.
 		
 		<form class="form" method="POST" acton="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-			<input type="text" placeholder="Username" required name="uname" value="<?php echo $name; ?>">
+			<input type="text" placeholder="Username" required name="uname" value="<?php echo $name; ?>" class="icon1">
             <?php echo $nameerr; ?>
-			<input type="text" placeholder="Email" required name="email" value="<?php echo $email; ?>">
+			<input type="text" placeholder="Email" required name="email" value="<?php echo $email; ?>" class="icon3">
             <?php echo $emailerr; ?>
-			<input type="password" placeholder="Password" required name="pass1" value="<?php echo $pass1; ?>">
+			<input type="password" placeholder="Password" required name="pass1" value="<?php echo $pass1; ?>" class="icon2">
             <?php echo $passerr; ?>
-			<input type="password" placeholder="Re-type Password" required name="pass2" value="<?php echo $pass2; ?>">
+			<input type="password" placeholder="Re-type Password" required name="pass2" value="<?php echo $pass2; ?>" class="icon2">
 			<button type="submit" id="login-button">Signup</button>
 		</form>
        Alredy have an account?<a href="www.google.com">Login here.</a>

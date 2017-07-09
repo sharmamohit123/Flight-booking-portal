@@ -23,7 +23,7 @@ class bookingUsers{
         $p2=MD5($this->test_input($_POST['pass2']));
 
         if($p1!=$p2){
-            echo "<h2>Password do not match.</h2>";
+            //echo "<h2>Password do not match.</h2>";
             return;
         }
         $sql = "SELECT COUNT(Username) as theCount FROM User WHERE Username=:uname OR Email=:email";
@@ -93,3 +93,58 @@ class bookingUsers{
         return $data;
     }
 }
+
+class populate{
+
+    private $_db;
+
+    public function __construct($db=NULL){
+
+        if(is_object($db))
+        {
+            $this->_db = $db;
+        }
+        else{
+            $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
+            $this->_db = new PDO($dsn, DB_USER, DB_PASS);
+        }
+    }
+
+    public function showFlights(){
+        
+        $conn = $this->_db;
+        $src = $this->test_input($_POST['source']);
+        $dsn = $this->test_input($_POST['destination']);
+        $date = $this->test_input($_POST['date']);
+
+ /*        $sql = "INSERT INTO flights (brand, name, source, destination, date, timing)
+    VALUES ('AIR INDIA', 'A3-149', 'JAIPUR', 'HYDERABAD', '2017-07-08', '17:35 HRS-19:03 HRS')";
+    // use exec() because no results are returned
+    $conn->exec($sql);*/
+
+        $flights = $conn->prepare("SELECT * FROM flights WHERE source=:src AND destination=:dsn AND date=:date");
+        $flights->bindParam(':src',$src,PDO::PARAM_STR);
+        $flights->bindParam(':dsn',$dsn,PDO::PARAM_STR);
+        $flights->bindParam(':date',$date,PDO::PARAM_STR);
+        $flights->execute();
+        //echo $flights->rowCount();
+        $data = $flights->fetchAll();
+        //echo $data;
+      /*  foreach ($data as $row){
+           // echo $src.$dsn.$date;
+            //echo "Hello";
+            echo $row['source'].$row['destination'];
+        }*/
+        return $data;
+
+    }
+    public function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+}
+
+?>
+

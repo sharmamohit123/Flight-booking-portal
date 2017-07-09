@@ -46,7 +46,7 @@
   top: 100%;
   left: 0;
   width: 100%;
-  height: 400px;
+  height: 300px;
   overflow: hidden;
 }
 .wrapper.form-success .container h1 {
@@ -79,12 +79,6 @@
           transition-timing-function: ease-in-put;
   font-weight: 200;
 }
-
-.down{
-  background-color:#00004d;
-  color: red;
-}
-
 form {
   padding: 20px 0;
   position: relative;
@@ -359,4 +353,3 @@ background-repeat: no-repeat;
 background-position: 2px 3px;
 text-indent: 17px;
 }
-
