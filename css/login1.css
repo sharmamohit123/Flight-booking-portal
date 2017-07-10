@@ -98,13 +98,13 @@ form input {
   display: block;
   text-align: center;
   font-size: 18px;
-  color: white;
+/*  color: black;*/
   -webkit-transition-duration: 0.25s;
           transition-duration: 0.25s;
   font-weight: 300;
 
 }
-.icon1{
+.icon11{
 background :url(https://www.jamf.com/jamf-nation/img/default-avatars/generic-user.png); 
 background-repeat: no-repeat;
     background-position: left center;

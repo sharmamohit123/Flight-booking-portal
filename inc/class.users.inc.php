@@ -19,6 +19,8 @@ class bookingUsers{
     {
         $u=$this->test_input($_POST['uname']);
         $e=$this->test_input($_POST['email']);
+       // $u = trim($_POST['uname']);
+        $v = sha1(time());
         $p1=MD5($this->test_input($_POST['pass1'])); 
         $p2=MD5($this->test_input($_POST['pass2']));
 
@@ -33,10 +35,14 @@ class bookingUsers{
             $stmt->execute();
             $row = $stmt->fetch();
             if($row['theCount']!=0){
-                $err = "Sorry, Username or Email is already in use!";
+                $err = "Username or Email is already in use!";
                 //echo $err;
                 return;
             }
+            if(!$this->sendVerificationEmail($e,$v)) {
+                return;
+            }
+            //$stmt->closeCursor();
         }
 
         $sql = "INSERT INTO User(Username, Password, Email)
@@ -56,6 +62,42 @@ class bookingUsers{
 				// include_once $path."/common/footer.php";
 				// echo "<meta http-equiv='refresh' content='3; url=/main.php'>";
 				return;
+        }
+    }
+
+     private function sendVerificationEmail($email,$ver)
+    {
+      $to = $email;
+$subject = "Account verfication";
+
+$message = "Your account has been verified on myFlight.".$ver;
+
+require 'PHPMailer/PHPMailerAutoload.php';
+$mail = new PHPMailer();
+$mail->IsSmtp();
+$mail->SMTPDebug = 0;
+$mail->SMTPAuth = true;
+$mail->SMTPSecure = 'ssl';
+$mail->Host = "smtp.gmail.com";
+$mail->Port = 465;
+$mail->IsHTML(false);
+$mail->Username = "ms892075@gmail.com";
+$mail->Password = "pranjaldon";
+$mail->SetFrom("ms892075@gmail.com");
+$mail->Subject = $subject;
+$mail->Body = $message;
+$mail->AddAddress($to);
+return $mail->send();
+
+    }
+
+    private function verify($ver){
+        $code = $this->test_input($_POST['code']);
+        if($code == $ver){
+            return TRUE;
+        }
+        else{
+            return False;
         }
     }
 
@@ -144,6 +186,26 @@ class populate{
         return $data;
 
     }
+
+     public function getFlight(){
+        
+        $conn = $this->_db;
+        $id = $this->test_input($_POST['flight']);
+
+ /*        $sql = "INSERT INTO flights (brand, name, source, destination, date, timing)
+    VALUES ('AIR INDIA', 'A3-149', 'JAIPUR', 'HYDERABAD', '2017-07-08', '17:35 HRS-19:03 HRS')";
+    // use exec() because no results are returned
+    $conn->exec($sql);*/
+
+        $flights = $conn->prepare("SELECT * FROM flights WHERE flightId=:id");
+        $flights->bindParam(':id',$id,PDO::PARAM_STR);
+        $flights->execute();
+       // echo $flights->rowCount();
+        $data = $flights->fetchAll();
+        //echo $data['source'];
+        return $data[0];
+     }
+
     public function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);

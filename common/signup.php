@@ -53,11 +53,13 @@ if($flag == 0){
         if($users->createAccount()==TRUE){
             echo "<meta http-equiv='refresh' content='3; url=/main.php'>";
         $tmp="SignUp Successfull!!";
+            //echo $tmp;
       }
       else{
        // $err ="Username already exists";
            // echo "<meta http-equiv='refresh' content='3; url=/signup.php'>";
-            $nameerr = "Username or Email already exists";
+           // $nameerr = $users->createAccount();
+           $nameerr = "Username or Email already exists.";
       }
       unset($_POST['email']);
 }
@@ -86,7 +88,7 @@ function test_input($data) {
         All fields required.
 		
 		<form class="form" method="POST" acton="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-			<input type="text" placeholder="Username" required name="uname" value="<?php echo $name; ?>" class="icon1">
+			<input type="text" placeholder="Username" required name="uname" value="<?php echo $name; ?>" class="icon11">
             <?php echo $nameerr; ?>
 			<input type="text" placeholder="Email" required name="email" value="<?php echo $email; ?>" class="icon3">
             <?php echo $emailerr; ?>

@@ -67,6 +67,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 </div>
 
 <div class="down">
+	<?php
+	if(empty($list)){?>
+			<br><br><br><br><br>
+			<img src="./images/sorry.png" width="200px" height="200px" style="margin-left:500px">
+			<h1 style="color:white;text-align:center"> Sorry! No flights are found on this date.</h1>
+		<?php } 
+		else{ ?>
 	<table width="70%" style="background-color:#00004d;margin-left:300px;color:white">
 		<tr>
 			<td align="center">Flight</td>
@@ -77,6 +84,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		</table><br>
 		<?php
 
+		
 		foreach($list as $row){?>
 			<table width="70%" style="background-color:#ffcc99;margin-left:300px;border-radius:8px;color:#00004d">
 				<tr>
@@ -92,7 +100,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 							<button type="button" class="login-button1" onclick="myFunction()">Book</button>
 						<?php }
 					else{ ?>
-					<form method="POST" action="/review_booking.php">
+					<form method="POST" action="/details.php">
 					<input type="hidden" name="flight" value="<?php echo $row['flightId']; ?>">
 					<input type="hidden" name="user" value="<?php echo $_SESSION['Username']; ?>">
 					<input type="hidden" name="amount" value="<?php echo $_POST['passenger']; ?>">
@@ -103,6 +111,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				</tr>
 			</table><br>
 		<?php
+		}
 		}
 		?>
 		</table>
