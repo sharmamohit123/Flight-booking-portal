@@ -5,7 +5,7 @@ $name = $email = $pass1 = $pass2 = "";
 if($_SERVER['REQUEST_METHOD']=="POST"){
     $flag = 0;
 $name = test_input($_POST['uname']);
-if(!preg_match("/^[a-zA-Z ]*$/",$name)){
+if(!preg_match("/^[a-zA-Z0-9 ]*$/",$name)){
     $nameerr = "Only letters and white spaces allowed.";
     $flag = 1;
 }

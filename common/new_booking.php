@@ -1,20 +1,22 @@
 
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    
+    <!-- Load jQuery JS -->
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!-- Load jQuery UI Main JS  -->
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    
+    <!-- Load SCRIPT.JS which will create datepicker for input field  -->
+    <script src="js/script.js"></script>
+    
+    <link rel="stylesheet" href="css/runnable.css" />
+  
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <script src="js/login.js"></script>
-<link rel="stylesheet" href="css/login.css">
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
+  <link rel="stylesheet" href="css/login.css">
+
 <div class="wrapper">
 	<div class="container">
 		<h1>Book Flight</h1>

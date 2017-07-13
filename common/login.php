@@ -15,7 +15,7 @@
 			//echo "<h1> You have Successfully Logged In.</h1>";
 			//if($set){
 				//$set = FAlSE;
-			echo "<meta http-equiv='refresh' content='3; url=/new_booking.php'>";
+			echo "<meta http-equiv='refresh' content='0; url=/new_booking.php'>";
 			//}
 			//else{
 			//echo "<meta http-equiv='refresh' content='3; url=/new_booking.php'>";				

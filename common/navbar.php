@@ -6,7 +6,7 @@
 <header class="main_h">
 
     <div class="raw">
-        <a class="logo" href="#">MyFLight</a>
+        <a class="logo" href="#"><div style="color:#00004d">MyFLight</div></a>
 
         <div class="mobile-toggle">
             <span></span>
@@ -20,25 +20,27 @@
             if(isset($_SESSION['LoggedIn']) && isset($_SESSION['Username']) && $_SESSION['LoggedIn']==1){
                 ?> 
                 <li><a href="./main.php"><img src="./images/home.png" width="20px" height="17px"></a></li>
-                <li><a href=".sec02">CONTACT US</a></li>
-                <li><a href="./logout.php">LOGOUT</a></li>
-                <li><a href="./new_booking.php">NEW_BOOKING</a></li>
-                <li><a href="./my_bookings.php">MY_BOOKINGS</a></li>
+                <li><a href=".sec02"><div style="color:#00004d">CONTACT US</div></a></li>
+                <li><a href="./new_booking.php"><div style="color:#00004d">NEW_BOOKING</div></a></li>
+                <li><a href="./my_bookings.php"><div style="color:#00004d">MY_BOOKINGS</div></a></li>
+                <li><a href="./my_account.php"><img src="./images/user.png" width="50px" height="50px"></a></li>
+                                    
             <?php
             }
                 else{
                     ?>
-
-                <li><a href="./main.php"><img src="./images/home.png" width="20px" height="20px"></a></li>
-                <li><a href=".sec02">CONTACT US</a></li>
-                <li><a href="./login.php">LOGIN</a></li>
-                <li><a href="./signup.php">SIGNUP</a></li>
-                <li><a href="./new_booking.php">NEW_BOOKING</a></li>
+                
+                <li><a href="./main.php"><img src="./images/home.png" width="20px" height="17px"></a></li>
+                <li><a href=".sec02"><div style="color:#00004d">CONTACT US</div></a></li>
+                <li><a href="./login.php"><div style="color:#00004d">LOGIN</div></a></li>
+                <li><a href="./signup.php"><div style="color:#00004d">SIGNUP</div></a></li>
+                <li><a href="./new_booking.php"><div style="color:#00004d">NEW_BOOKING</div></a></li>
                 <?php
                     }
                 ?>
             </ul>
         </nav>
+        
 
     </div> <!-- / row -->
 

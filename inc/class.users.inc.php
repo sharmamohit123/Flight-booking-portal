@@ -114,6 +114,7 @@ return $mail->send();
             $stmt->execute(); 
 
             if($stmt->rowCount()==1){
+               // $_SESSION['Email'] = htmlentities($this->test_input($_POST['email']), ENT_QUOTES);
                 $_SESSION['Username'] = htmlentities($this->test_input($_POST['uname']), ENT_QUOTES);
                 $_SESSION['LoggedIn'] = 1;
                 return TRUE; 
@@ -127,6 +128,111 @@ return $mail->send();
             return FALSE;
         }
     }
+
+    public function getUser(){
+        
+        $conn = $this->_db;
+        $user = $this->test_input($_SESSION['Username']);
+
+ /*        $sql = "INSERT INTO flights (brand, name, source, destination, date, timing)
+    VALUES ('AIR INDIA', 'A3-149', 'JAIPUR', 'HYDERABAD', '2017-07-08', '17:35 HRS-19:03 HRS')";
+    // use exec() because no results are returned
+    $conn->exec($sql);*/
+
+        $flights = $conn->prepare("SELECT * FROM User WHERE Username=:name");
+        $flights->bindParam(':name',$user,PDO::PARAM_STR);
+        $flights->execute();
+       // echo $flights->rowCount();
+        $data = $flights->fetchAll();
+        //echo $data['source'];
+        return $data[0];
+     }
+
+     public function changeEmail(){
+         $conn = $this->_db;
+         $p = $this->test_input($_POST['pass']);
+         $e2 = $this->test_input($_POST['new']);
+         $n = $this->test_input($_SESSION['Username']);
+        $stmt = "SELECT COUNT(Username) as theCount FROM User WHERE email=:email";
+        $num = $conn->prepare($stmt);
+        $num->bindParam(':email',$e2,PDO::PARAM_STR);
+        $num->execute();
+        $num1 = $num->fetch();
+        if($num1['theCount']==0){
+         
+         $sql = "UPDATE User SET email=:newemail WHERE Username=:name AND Password=MD5(:pass)";
+
+         if($change = $conn->prepare($sql)){
+         $change->bindParam(':newemail',$e2,PDO::PARAM_STR);
+         $change->bindParam(':name',$n,PDO::PARAM_STR);
+         $change->bindParam(':pass',$p,PDO::PARAM_STR);
+         $change->execute();
+         if($change->rowCount()==1){
+         return TRUE;
+         }
+         else{
+             return FALSE;
+         }
+         }
+         else {
+             return FALSE;
+         }
+        }
+        else{
+            return FALSE;
+        }
+     }
+
+     public function changePass(){
+         $conn = $this->_db;
+         $op = $this->test_input($_POST['old']);
+         $np1 = $this->test_input($_POST['new1']);
+         $np2 = $this->test_input($_POST['new2']);
+         $name = $this->test_input($_SESSION['Username']);
+         if($sql = $conn->prepare("UPDATE User SET Password=MD5(:pass) WHERE Username=:name AND Password=MD5(:pass1)")){
+             $sql->bindParam(':pass',$np1,PDO::PARAM_STR);
+             $sql->bindParam(':name',$name,PDO::PARAM_STR);
+             $sql->bindParam(':pass1',$op,PDO::PARAM_STR);
+             $sql->execute();
+             if($sql->rowCount()==1){
+             return TRUE;
+             }
+             else{
+                 return FALSE;
+             }
+
+         }
+         else{
+             return FALSE;
+         }
+     }
+
+     public function deleteAccount(){
+         $conn = $this->_db;
+        // $op = $this->test_input($_POST['old']);
+         $np1 = $this->test_input($_POST['pass']);
+         //$np2 = $this->test_input($_POST['new2']);
+         $name = $this->test_input($_SESSION['Username']);
+         echo "yo";
+         if($sql = $conn->prepare("DELETE FROM User WHERE Username=:name AND Password=MD5(:pass)")){
+             echo "yo";
+             $sql->bindParam(':name',$name,PDO::PARAM_STR);
+             $sql->bindParam(':pass',$np1,PDO::PARAM_STR);
+             //$sql->bindParam(':pass1',$op,PDO::PARAM_STR);
+             $sql->execute();
+             echo $sql->rowCount();
+             if($sql->rowCount()==1){
+             return TRUE;
+             }
+             else{
+                 return FALSE;
+             }
+
+         }
+         else{
+             return FALSE;
+         }
+     }
 
     public function test_input($data) {
         $data = trim($data);
@@ -204,6 +310,34 @@ class populate{
         $data = $flights->fetchAll();
         //echo $data['source'];
         return $data[0];
+     }
+
+     public function change_date(){
+
+         $conn = $this->_db;
+         $sql = "SELECT * from flights";
+         $new = $conn->prepare($sql);
+         $new->execute();
+         $n = $new->rowCount();
+         //echo $n;
+         $data = $new->fetchAll();
+         for($x=0; $x<$n ;$x++){
+             //$row['date'] = strtotime("+1 days", $row['date']);
+             //$dt = $row['date'];
+             $stmt = $conn->prepare("UPDATE flights SET date=:dt WHERE flightId=:id");
+             $dt = strtotime($data[$x]['date']);
+             $y = date('Y', $dt);
+             $m = date('m', $dt);
+             $d = date('d', $dt)+1;
+             //echo $y.$m.$d;
+             $data[$x]['date'] = mktime(0, 0 , 0, $m, $d, $y);
+             $ds = date('Y-m-d',$data[$x]['date']);
+             $id = $x+1;
+             $stmt->bindParam(':dt',$ds,PDO::PARAM_STR);
+             $stmt->bindParam(':id',$id,PDO::PARAM_STR);
+             $stmt->execute();
+         }
+         //echo date('Y/m/d',$data[0]['date']);
      }
 
     public function test_input($data) {
