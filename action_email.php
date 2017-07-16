@@ -39,7 +39,7 @@ if($flag == 0){
         $users = new bookingUsers($db);
         // echo ;
         if($users->changeEmail()==TRUE){
-            echo "<meta http-equiv='refresh' content='3; url=/my_account.php'>";
+            echo "<meta http-equiv='refresh' content='0; url=/my_account.php'>";
         $tmp="SignUp Successfull!!";
             //echo $tmp;
       }

@@ -1,4 +1,5 @@
 <?php
+$cars = array("INDIGO", "SPICEJET", "AIR INDIA");
 $path=$_SERVER['DOCUMENT_ROOT']; 
 $pageTitle = "BOOK FLIGHT";
 session_start();
@@ -49,7 +50,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				</td>
 			</tr>
 		</table>
-
 	</div>
 	<br>
 	<ul class="bg-bubbles">
@@ -65,6 +65,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		<li></li>
 	</ul>
 </div>
+
 
 <div class="down">
 	<?php
@@ -82,10 +83,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			<td width="25%">Book Flight</td>
 		</tr>
 		</table><br>
+		<div id="filter">
 		<?php
 
-		
-		foreach($list as $row){?>
+		foreach($list as $row){ ?>
 			<table width="70%" style="background-color:#ffcc99;margin-left:300px;border-radius:8px;color:#00004d">
 				<tr>
 					<td><img src="/images/<?php echo $row['brand'].".png"; ?>" width="30px" height="30px"></td>
@@ -111,13 +112,24 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 				</tr>
 			</table><br>
 		<?php
-		}
+		} ?>
+		</div>
+		<?php
 		}
 		?>
-		</table>
-</div>
+		<input type="checkbox" id="indigo" onclick="todo()">
+		</div>
+
 <script>
+			var flight = ['mu', 'po'];
+			//var content="";
+			//var s = JSON.stringify(flight);
+			
+
 function myFunction() {
 	document.getElementById('change').innerHTML="<meta http-equiv='refresh' content='3; url=/login.php'>"; 
+}
+function call() {
+	document.getElementById('change').innerHTML="<meta http-equiv='refresh' content='3; url=/new_booking.php'>"; 
 }
 </script>

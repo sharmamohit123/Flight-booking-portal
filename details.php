@@ -110,6 +110,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							
 							<div class="bottom">
 								<input type="submit" value="Save" method="POST"/>
+								<button type="button" onclick="call()">Cancel</button>
 							</div>
 							
 					</form>	
@@ -123,3 +124,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <!--copyright end here-->
 </div>
+
+<script>
+function call(){
+	document.getElementById('change').innerHTML = "<meta http-equiv='refresh' content='3; url=/new_booking.php'>";
+}
+</script>
