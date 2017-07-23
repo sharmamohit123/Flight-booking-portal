@@ -32,14 +32,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 		<table width=100%>
 			<tr>
 				<td align="right" width=15%>
-					<h3 style="color:#00004d">FROM</h3>
+					<h3 style="color:#00004d">FROM</h3><br>
 					<h2 style="color:#00004d"><?php echo $list['source']; ?></h2>
 				</td>
 				<td>
 					<img src="http://downloadicons.net/sites/default/files/aircraft-logo-icon-52466.png" width="50px" height="50px">
 				</td>
 				<td align="left" width="15%">
-					<h3 style="color:#00004d">TO</h3>
+					<h3 style="color:#00004d">TO</h3><br>
 					<h2 style="color:#00004d"><?php echo $list['destination']; ?></h2>
 				</td>
 				<td>
@@ -54,7 +54,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 </td>
                 <td><img src="/images/<?php echo $list['brand'].".png"; ?>" width="50px" height="50px"></td>
 					<td><h2 style="color:#00004d"><?php echo $list['brand']; ?></h2>
-                    <h3 style="color:#00004d"><?php echo $list['name']; ?></h3></td>
+                    <h5 style="color:#00004d"><?php echo $list['name']; ?></h5>
+                    <h5 style="color:#00004d"><?php echo $list['timing']; ?></h5></td>
 			</tr>
 		</table>
 
@@ -91,7 +92,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- main -->
 <div class="w3ls-header">
 	<h1 class="top">PASSENGER DETAILS</h1>
-    <form action="/review_booking.php" method="post">
+    <form action="/review_booking.php" method="POST">
 	<div class="header-main">
     <?php
     for($x=1;$x<=$_POST['amount'];$x++){ ?>
@@ -107,7 +108,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							</div>
                             <?php
     } ?>
-							
+					<input type="hidden" name="flight" value="<?php echo $list['flightId']; ?>">
+					<input type="hidden" name="user" value="<?php echo $_SESSION['Username']; ?>">
+					<input type="hidden" name="amount" value="<?php echo $_POST['amount']; ?>">	
 							<div class="bottom">
 								<input type="submit" value="Save" method="POST"/>
 								<button type="button" onclick="call()">Cancel</button>
