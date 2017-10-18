@@ -73,6 +73,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 			<br><br><br><br><br>
 			<img src="./images/sorry.png" width="200px" height="200px" style="margin-left:500px">
 			<h1 style="color:white;text-align:center"> Sorry! No flights are found on this date.</h1>
+			<form class="form">
+			<button type="button" id="login-button" onclick="call()" style="margin-left:500px;width:200px">Search another flight</button>
+		</form>
 		<?php } 
 		else{ ?>
 	<table width="70%" style="background-color:#00004d;margin-left:300px;color:white">
@@ -133,3 +136,4 @@ function call() {
 	document.getElementById('change').innerHTML="<meta http-equiv='refresh' content='3; url=/new_booking.php'>"; 
 }
 </script>
+<?php include_once $path.'/common/close.php';?>

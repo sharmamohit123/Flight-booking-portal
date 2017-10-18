@@ -86,26 +86,15 @@ background-repeat: no-repeat;
 						<div class="price-gd-top pric-clr1">
 							<img src="https://images.trvl-media.com/media/content/expus/graphics/launch/home/tvly/150324_flights-hero-image_1330x742.jpg" width="100%">
 							<h4>Flight details</h4>
-							<table style="margin-left:150px">
-								<tr>
-									<td colspan="2"><h5><?php echo $list['source']; ?> TO <?php echo $list['destination']; ?></h5></td>
-								</tr>
-								<tr>
-									<td>
-							<img src="/images/<?php echo $list['brand'].".png"; ?>" width="60px" height="60px">
-									</td>
-									<td>
+							<div style="margin-left:150px;width:250px">
+							<h5><?php echo $list['source']; ?> <img src="http://downloadicons.net/sites/default/files/aircraft-logo-icon-52466.png" width="20px" height="20px"><?php echo $list['destination']; ?></h5>
+							<img src="/images/<?php echo $list['brand'].".png"; ?>" width="50px" height="50px" style="float:left">
 							<h5><?php echo $list['brand']; ?><br>
 							<?php echo $list['name']; ?></h5>
-									</td>
-									</tr>
-									<tr><td colspan="2">
-							<h5><?php echo $list['timing']; ?></h5>
-									</td></tr>
-									<tr><td colspan="2">
-							<h5><?php echo $list['duration']; ?></h5>
-									</td></tr>
-									</table>
+							<img src="./images/time.png" width="50px" height="50px" style="float:left">
+							<h5><?php echo $list['timing']; ?><br>
+							<?php echo $list['duration']; ?></h5>
+							</div>
 						</div>
 							 <form action="/booked.php" method="POST">
 							 <input type="hidden" name="flight" value="<?php echo $_POST['flightId']; ?>">
@@ -142,7 +131,7 @@ background-repeat: no-repeat;
 				<div class="price-grid" style="width:100%">
 					<div class="price-block price-block1 agile">
 						<div class="price-gd-top pric-clr2">
-							<img src="https://d30y9cdsu7xlg0.cloudfront.net/png/188590-200.png" width="180px" height="180px" style="margin-top:-30px">
+							<img src="./images/passanger.png" width="150px" height="120px" style="margin-top:15px">
 						
 							<h4>Travellers details</h4>
 						</div>
@@ -267,3 +256,5 @@ background-repeat: no-repeat;
 			});
 		</script>
 	<!--//pop-up-box -->
+
+	<?php include_once $path.'/common/close.php';?>

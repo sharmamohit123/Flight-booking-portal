@@ -14,7 +14,7 @@
             <span></span>
         </div>
 
-        <nav>
+        <nav style="margin-right:-100px">
             <ul>
             <?php
             if(isset($_SESSION['LoggedIn']) && isset($_SESSION['Username']) && $_SESSION['LoggedIn']==1){
@@ -23,7 +23,7 @@
                 <li><a href=".sec02"><div style="color:#00004d">CONTACT US</div></a></li>
                 <li><a href="./new_booking.php"><div style="color:#00004d">NEW_BOOKING</div></a></li>
                 <li><a href="./my_bookings.php"><div style="color:#00004d">MY_BOOKINGS</div></a></li>
-                <li><a href="./my_account.php"><img src="./images/user.png" width="50px" height="50px"></a></li>
+                <li><a href="./my_account.php"><div style="color:#00004d">MY_ACCOUNT</div></a></li>
                                     
             <?php
             }

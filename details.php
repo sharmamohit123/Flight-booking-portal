@@ -133,3 +133,4 @@ function call(){
 	document.getElementById('change').innerHTML = "<meta http-equiv='refresh' content='3; url=/new_booking.php'>";
 }
 </script>
+<?php include_once $path.'/common/close.php';?>

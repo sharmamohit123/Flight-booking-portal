@@ -87,6 +87,8 @@ include_once $path.'/common/header.php';?>
 </div>
 
 </div>
+<?php include_once $path.'/common/close.php';?>
+
 
 <script>
     function call1(){

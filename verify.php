@@ -4,7 +4,7 @@
 	 	include_once $path.'/common/base.php'; 
 	 	include_once $path.'/inc/class.users.inc.php'; 
 
-}         //if($users->verify)
+}                     //if($users->verify)
          ?>
 <html>
     <head>
